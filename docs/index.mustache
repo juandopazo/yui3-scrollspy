@@ -1,0 +1,34 @@
+{{>getting-started}}
+
+<h2>Using the ScrollSpy plugin</h2>
+
+<p>Use Affix by plugging it into the node whose scroll state you want to spy on. This is usually the page's body. Pass it a configuration object with a <code>target</code> attribute. The <code>target</code> attribute should be a CSS selector string or a Node that points to a list that contains links to elements in the page. These links must be hash URLs with a value equal to the element's ID.</p>
+
+```javascript
+YUI({
+    gallery: '{{gallery-build}}'
+}).use('gallery-scrollspy', function (Y) {
+
+    Y.one('body').plug(Y.Plugin.ScrollSpy, {
+        target: '#navbar'
+    });
+
+});
+```
+
+<p>Alternatively you can set the target as a <code>data-</code> attribute of the plugged node.</p>
+
+```html
+<body data-target="navbar">...</body>
+```
+
+<h2>Example</h2>
+
+<p>The left navigation of this document page is a working example of the ScrollSpy plugin.</p>
+
+<h2>Release notes</h2>
+
+<h3>gallery-2013.05.15-21-12</h3>
+<ul>
+    <li>Initial release</li>
+</ul>

@@ -1,0 +1,15 @@
+{
+    "name"       : "yui3-scrollspy",
+    "displayName": "YUI ScrollSpy Plugin",
+    "description": "A Bootstrap-inspired ScrollSpy plugin for YUI",
+    "author"     : [ "jdopazo" ],
+    "use"        : [ "gallery-scrollspy" ],
+
+    "tags": [ "gallery", "plugin", "scrollspy" ],
+
+    "bgcolor": "#af3732",
+    "bgimage": "p5.png",
+    "repo": "https://github.com/juandopazo/yui3-scrollspy",
+    "componentAPI": "api/classes/Plugin.ScrollSpy.html"
+
+}
