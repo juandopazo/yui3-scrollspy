@@ -7,8 +7,8 @@
 
     "tags": [ "gallery", "plugin", "scrollspy" ],
 
-    "bgcolor": "#af3732",
-    "bgimage": "p5.png",
+    "bgcolor": "#2a75b9",
+    "bgimage": "white_bed_sheet.png",
     "repo": "https://github.com/juandopazo/yui3-scrollspy",
     "componentAPI": "api/classes/Plugin.ScrollSpy.html"
 
