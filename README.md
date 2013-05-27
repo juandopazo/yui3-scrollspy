@@ -27,5 +27,5 @@ YUI({
 Alternatively you can set the target node as a `data-` attribute of the plugged node.
 
 ```html
-<body data-target="#navgar">...</body>
+<body data-target="#navbar">...</body>
 ```
