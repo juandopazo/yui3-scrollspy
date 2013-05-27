@@ -83,7 +83,7 @@ Y.extend(ScrollSpy, Y.Plugin.ScrollInfo, {
         The target list. Usually a list with a `yui3-menu` class.
         Alternatively, provide a `data-target` attribute in your plugged node.
 
-        @attribute {String|Node} target Node or selector.
+        @attribute {String|Node} target
         @initOnly
         **/
         target: {
