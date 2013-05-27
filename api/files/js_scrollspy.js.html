@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>js\scrollspy.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Plugin.ScrollSpy.html">Plugin.ScrollSpy</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: js\scrollspy.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+A plugin for updating the active element of a list based on the scroll position
+of a certain node. Plug it into a scrollable node (usually the body) and set the
+&#x60;target&#x60; attribute to the list.
+
+@class Plugin.ScrollSpy
+@constructor
+@extends Plugin.ScrollInfo
+@param {Object} [config] Object literal containing configuration options
+**/
+function ScrollSpy() {
+    ScrollSpy.superclass.constructor.apply(this, arguments);
+}
+Y.extend(ScrollSpy, Y.Plugin.ScrollInfo, {
+    initializer: function () {
+        this.on(&#x27;scroll&#x27;, this.refresh, this);
+        this.refresh();
+    },
+    /**
+    Recalculates the current active node in the list and resets the active
+    CSS class names.
+
+    @method refresh
+    **/
+    refresh: function () {
+        var links = this.get(&#x27;target&#x27;).all(&#x27;a&#x27;),
+            candidates = links.getAttribute(&#x27;href&#x27;),
+            ids = [], i = 0, length = candidates.length,
+            topNode,
+            activeClass = this.get(&#x27;activeClass&#x27;);
+
+        for (; i &lt; length; i++) {
+            if (candidates[i].charAt(0) === &#x27;#&#x27;) {
+                ids.push(candidates[i]);
+            }
+        }
+
+        topNode = this.getOnscreenNodes(ids.join(&#x27;,&#x27;)).shift();
+
+        if (topNode) {
+            topNode = &#x27;#&#x27; + topNode.get(&#x27;id&#x27;);
+            links.batch(function (link) {
+                var node = link.get(&#x27;parentNode&#x27;);
+                node.toggleClass(activeClass, link.getAttribute(&#x27;href&#x27;) === topNode);
+            });
+        }
+    }
+}, {
+    /**
+    Plugin namespace.
+
+    @property NS
+    @type String
+    @default &#x27;scrollspy&#x27;
+    @static
+    **/
+    NS: &#x27;scrollspy&#x27;,
+    ATTRS: {
+        /**
+        Number of milliseconds by which ScrollSpy throttles the scroll event.
+        Alternatively, provide a &#x60;data-delay&#x60; attribute in your plugged node.
+
+        @attribute {Number} scrollDelay
+        @default 15
+        @initOnly
+        **/
+        scrollDelay: {
+            valueFn: function () {
+                return parseInt(this.get(&#x27;host&#x27;).getData(&#x27;delay&#x27;), 10) || 15;
+            },
+            initOnly: true
+        },
+        /**
+        The class to apply to the active item in the list.
+
+        @attribute {String} activeClass
+        @default &#x27;yui3-menu-active&#x27;
+        **/
+        activeClass: {
+            value: Y.ClassNameManager.getClassName(&#x27;menu&#x27;, &#x27;active&#x27;)
+        },
+        /**
+        The target list. Usually a list with a &#x60;yui3-menu&#x60; class.
+        Alternatively, provide a &#x60;data-target&#x60; attribute in your plugged node.
+
+        @attribute {String|Node} target
+        @initOnly
+        **/
+        target: {
+            setter: Y.one,
+            valueFn: function () {
+                return this.get(&#x27;host&#x27;).getData(&#x27;target&#x27;);
+            },
+            initOnly: true
+        }
+    }
+});
+
+Y.Plugin.ScrollSpy = ScrollSpy;
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

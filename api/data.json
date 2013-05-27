@@ -1,0 +1,92 @@
+{
+    "project": {},
+    "files": {
+        "js\\scrollspy.js": {
+            "name": "js\\scrollspy.js",
+            "modules": {},
+            "classes": {
+                "Plugin.ScrollSpy": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Plugin.ScrollSpy": {
+            "name": "Plugin.ScrollSpy",
+            "shortname": "Plugin.ScrollSpy",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "js\\scrollspy.js",
+            "line": 1,
+            "description": "A plugin for updating the active element of a list based on the scroll position\nof a certain node. Plug it into a scrollable node (usually the body) and set the\n`target` attribute to the list.",
+            "is_constructor": 1,
+            "extends": "Plugin.ScrollInfo",
+            "params": [
+                {
+                    "name": "config",
+                    "description": "Object literal containing configuration options",
+                    "type": "Object",
+                    "optional": true
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "js\\scrollspy.js",
+            "line": 19,
+            "description": "Recalculates the current active node in the list and resets the active\nCSS class names.",
+            "itemtype": "method",
+            "name": "refresh",
+            "class": "Plugin.ScrollSpy"
+        },
+        {
+            "file": "js\\scrollspy.js",
+            "line": 49,
+            "description": "Plugin namespace.",
+            "itemtype": "property",
+            "name": "NS",
+            "type": "String",
+            "default": "'scrollspy'",
+            "static": 1,
+            "class": "Plugin.ScrollSpy"
+        },
+        {
+            "file": "js\\scrollspy.js",
+            "line": 59,
+            "description": "Number of milliseconds by which ScrollSpy throttles the scroll event.\nAlternatively, provide a `data-delay` attribute in your plugged node.",
+            "itemtype": "attribute",
+            "name": "scrollDelay",
+            "type": "Number",
+            "default": "15",
+            "initonly": "",
+            "class": "Plugin.ScrollSpy"
+        },
+        {
+            "file": "js\\scrollspy.js",
+            "line": 73,
+            "description": "The class to apply to the active item in the list.",
+            "itemtype": "attribute",
+            "name": "activeClass",
+            "type": "String",
+            "default": "'yui3-menu-active'",
+            "class": "Plugin.ScrollSpy"
+        },
+        {
+            "file": "js\\scrollspy.js",
+            "line": 82,
+            "description": "The target list. Usually a list with a `yui3-menu` class.\nAlternatively, provide a `data-target` attribute in your plugged node.",
+            "itemtype": "attribute",
+            "name": "target",
+            "type": "String|Node",
+            "initonly": "",
+            "class": "Plugin.ScrollSpy"
+        }
+    ],
+    "warnings": []
+}
